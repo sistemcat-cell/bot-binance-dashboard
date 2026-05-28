@@ -45,7 +45,10 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 st.title("📊 Dashboard Bot Binance")
-
+st_autorefresh(
+    interval=60000,
+    key="dashboardrefresh"
+)
 col_start, col_stop = st.columns(2)
 
 with col_start:
