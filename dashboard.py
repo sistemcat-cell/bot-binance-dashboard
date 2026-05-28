@@ -86,7 +86,7 @@ url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
 params = {
     "vs_currency": "usd",
     "days": "1",
-    "interval": "minutely"
+    "interval": "daily"
 }
 
 response = requests.get(
