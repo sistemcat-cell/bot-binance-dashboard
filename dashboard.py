@@ -97,6 +97,11 @@ response = requests.get(
 
 data = response.json()
 
+if "prices" not in data:
+    st.error("CoinGecko no devolvió precios en este momento.")
+    st.write(data)
+    st.stop()
+
 prices = data["prices"]
 
 df = pd.DataFrame(
