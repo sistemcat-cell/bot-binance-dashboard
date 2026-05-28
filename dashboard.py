@@ -158,6 +158,10 @@ rs = avg_gain / avg_loss
 df["RSI"] = 100 - (100 / (1 + rs))
 
 # PRECIO ACTUAL
+
+if df.empty or len(df["close"]) == 0:
+    st.error("No hay datos de precio disponibles en este momento.")
+    st.stop()
 precio_actual = round(df["close"].iloc[-1], 2)
 
 st.metric("BTCUSDT", precio_actual)
