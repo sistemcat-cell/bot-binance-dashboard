@@ -98,6 +98,8 @@ response = requests.get(
 
 data = response.json()
 
+st.write(data)
+
 if not data or isinstance(data, dict):
     st.error("Binance no devolvió datos válidos en este momento.")
     st.stop()
