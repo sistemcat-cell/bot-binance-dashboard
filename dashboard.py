@@ -7,7 +7,7 @@ import requests
 import plotly.graph_objects as go
 
 from streamlit_autorefresh import st_autorefresh
-from config import BASE_URL, INTERVAL
+from config import INTERVAL
 
 # CONFIGURACION PAGINA
 st.set_page_config(
@@ -79,15 +79,14 @@ with col_stop:
         st.warning("Bot detenido")
 
 # PAR
-symbol = "BTCUSDT"
+symbol = "bitcoin"
 
-# API BINANCE
-url = f"{BASE_URL}/api/v3/klines"
+url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
 
 params = {
-    "symbol": symbol,
-    "interval": INTERVAL,
-    "limit": 100
+    "vs_currency": "usd",
+    "days": "1",
+    "interval": "minutely"
 }
 
 response = requests.get(
@@ -98,11 +97,18 @@ response = requests.get(
 
 data = response.json()
 
-st.write(data)
+prices = data["prices"]
 
-if not data or isinstance(data, dict):
-    st.error("Binance no devolvió datos válidos en este momento.")
-    st.stop()
+df = pd.DataFrame(
+    prices,
+    columns=["time", "close"]
+)
+
+df["close"] = df["close"].astype(float)
+
+df["open"] = df["close"]
+df["high"] = df["close"]
+df["low"] = df["close"]
 
 # COLUMNAS
 columnas = [
