@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv("BINANCE_SECRET_KEY")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-BASE_URL = "https://testnet.binance.vision"
+BASE_URL = "https://api.binance.com"
 
 SYMBOLS = [
     "BTCUSDT",
