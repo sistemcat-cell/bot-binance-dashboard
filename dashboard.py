@@ -94,6 +94,10 @@ response = requests.get(url, params=params)
 
 data = response.json()
 
+if not data or isinstance(data, dict):
+    st.error("Binance no devolvió datos válidos en este momento.")
+    st.stop()
+
 # COLUMNAS
 columnas = [
     "open_time",
